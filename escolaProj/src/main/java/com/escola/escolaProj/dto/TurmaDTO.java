@@ -1,5 +1,6 @@
 package com.escola.escolaProj.dto;
 
+import com.escola.escolaProj.Entity.Aluno;
 import com.escola.escolaProj.Entity.Professor;
 import com.escola.escolaProj.Entity.Turma;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor

@@ -41,7 +41,30 @@ public class TurmaService {
         return turmaDTO.fromTurma(turma);
     }
 
+    //atualiza os dados da turma menos os alunos
+    public Optional<TurmaDTO> updateTurma(Long id, TurmaDTO turmaDTO) {
+        Optional<Turma> turmaOptional = turmaRepository.findById(id);
+        if(turmaOptional.isPresent()){
+            Turma turma = turmaOptional.get();
+            turma.setSigla(turmaDTO.getSigla());
+            turma.setNumeroSala(turmaDTO.getNumeroSala());
+            turma.setNome(turmaDTO.getNome());
+            turma.setProfessor(turmaDTO.getProfessor());
 
+            turma = turmaRepository.save(turma);
 
+            return Optional.of(turmaDTO.fromTurma(turma));
+        }else {
+            return Optional.empty();
+        }
+    }
 
+    public  boolean delete(Long id){
+        if(turmaRepository.existsById(id)){
+            turmaRepository.deleteById(id);
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
