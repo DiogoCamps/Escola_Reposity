@@ -1,5 +1,6 @@
 package com.escola.escolaProj.dto;
 
+import com.escola.escolaProj.Entity.Professor;
 import com.escola.escolaProj.Entity.Aluno;
 import com.escola.escolaProj.Entity.Turma;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class TurmaDTO implements Serializable {
     private Integer numeroSala;
     private String nome;
     private Professor professor;
-    private Aluno aluno;
+    private List<Aluno> aluno;
 
   public Turma toTurma(){
       return new Turma(

@@ -1,14 +1,14 @@
 package com.escola.escolaProj.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.escola.escolaProj.Entity.Aluno;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -18,8 +18,9 @@ public class Turma implements Serializable {
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
      private String sigla;
+     @Column(unique = true)
      private Integer numeroSala;
      private String nome;
      private Professor professor;
-     private Aluno aluno;
+     private List<Aluno> aluno;
 }
