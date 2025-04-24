@@ -1,5 +1,6 @@
 package com.escola.escolaProj.dto;
 
+import com.escola.escolaProj.Entity.Professor;
 import com.escola.escolaProj.Entity.Turma;
 import lombok.AllArgsConstructor;
 import lombok.Data;

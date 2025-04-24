@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2cc1f71-97a5-475d-b2a9-fd5b7145cf37" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/escola/escolaProj/Entity/Professor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/escola/escolaProj/dto/ProfessorDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/escola/escolaProj/service/ProfessorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/escola/escolaProj/Entity/Turma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/escola/escolaProj/Entity/Turma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/escola/escolaProj/dto/TurmaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/escola/escolaProj/dto/TurmaDTO.java" afterDir="false" />
     </list>
-    <list default="true" id="f2cc1f71-97a5-475d-b2a9-fd5b7145cf37" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,39 +52,20 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2wBUyx2zr0h6mVWh0bzUiGHRdXm" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.EscolaProjApplication.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.escolaProj [:EscolaProjApplication.main()].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/Aluno/Desktop/Escola_Reposity/escolaProj&quot;
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.EscolaProjApplication.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Gradle.escolaProj [:EscolaProjApplication.main()].executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Aluno/Desktop/Escola_Reposity/escolaProj"
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -94,19 +77,15 @@
     </task>
     <servers />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/main/java/com/escola/escolaProj/Entity/Turma.java</url>
-          <line>9</line>
-          <properties field="professo" class="com.escola.escolaProj.Entity.Turma" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
