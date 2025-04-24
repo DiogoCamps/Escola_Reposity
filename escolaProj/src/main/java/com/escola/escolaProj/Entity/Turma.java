@@ -1,6 +1,7 @@
 package com.escola.escolaProj.Entity;
 
-import com.escola.escolaProj.Entity.Aluno;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +22,12 @@ public class Turma implements Serializable {
      @Column(unique = true)
      private Integer numeroSala;
      private String nome;
+
+     @ManyToOne
+     @JoinColumn(name = "id.professor", referencedColumnName = "id")
      private Professor professor;
-     private List<Aluno> aluno;
+
+     @OneToMany(mappedBy = "aluno")
+     @JsonIgnore
+     private List<Aluno> alunos;
 }

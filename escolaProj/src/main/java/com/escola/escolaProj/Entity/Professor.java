@@ -1,12 +1,12 @@
 package com.escola.escolaProj.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -20,4 +20,7 @@ public class Professor {
     private String nome;
     private String sobrenome;
 
+    @OneToMany(mappedBy = "turma")
+    @JsonIgnore
+    private List<Turma> turmas;
 }

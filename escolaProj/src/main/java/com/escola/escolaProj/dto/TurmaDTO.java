@@ -20,27 +20,27 @@ public class TurmaDTO implements Serializable {
     private Integer numeroSala;
     private String nome;
     private Professor professor;
-    private List<Aluno> aluno;
+    private List<Aluno> alunos;
 
-  public Turma toTurma(){
-      return new Turma(
-              this.id = id,
-              this.sigla = sigla,
-              this.numeroSala = numeroSala,
-              this.nome = nome,
-              this.professor = professor,
-              this.aluno = aluno
+    public Turma toTurma(){
+        return new Turma(
+                this.id,
+                this.sigla,
+                this.numeroSala,
+                this.nome,
+                this.professor,
+                this.alunos
+        );
+    }
+    public TurmaDTO fromTurma(Turma turma){
+      return new TurmaDTO(
+              turma.getId(),
+              turma.getSigla(),
+              turma.getNumeroSala(),
+              turma.getNome(),
+              turma.getProfessor(),
+              turma.getAlunos()
       );
-  }
-      public TurmaDTO fromTurma(Turma turma){
-          return new TurmaDTO(
-                  turma.getId(),
-                  turma.getSigla(),
-                  turma.getNumeroSala(),
-                  turma.getNome(),
-                  turma.getProfessor(),
-                  turma.getAluno()
-          );
   }
 
 }
