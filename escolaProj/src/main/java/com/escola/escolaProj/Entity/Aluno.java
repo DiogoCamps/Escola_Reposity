@@ -24,7 +24,7 @@ public class Aluno implements Serializable {
     @JoinColumn(name = "turma_id")
     Turma turma;
 
-    public Aluno (){
+    public Aluno(){
 
     }
 

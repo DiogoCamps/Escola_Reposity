@@ -1,19 +1,29 @@
 package com.escola.escolaProj.dto;
 
+import com.escola.escolaProj.Entity.Aluno;
+import com.escola.escolaProj.Entity.Turma;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-public class AlunoDTO {
+public class AlunoDTO implements Serializable{
     private Long idAluno;
     private String nome;
     private String cpf;
     private Long turma_id;
 
+    Turma turma;
 
- 
+    public Aluno toAluno() {
+        return new Aluno(
+                this.nome,
+                this.cpf,
+                this.turma
+        );
+    }
+
 
     public Long getIdAluno() {
         return idAluno;
