@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -21,5 +23,5 @@ public class Turma implements Serializable {
      private Integer numeroSala;
      private String nome;
      private Professor professor;
-     private Aluno aluno;
+     private List<aluno> aluno;
 }
