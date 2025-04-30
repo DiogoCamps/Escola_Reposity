@@ -1,9 +1,6 @@
 package com.escola.escolaProj.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -63,4 +60,7 @@ public class Aluno implements Serializable {
     public void setTurma(Turma turma) {
         this.turma = turma;
     }
+
+
+
 }
