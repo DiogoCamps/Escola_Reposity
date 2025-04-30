@@ -8,9 +8,6 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Aluno implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,17 +18,26 @@ public class Aluno implements Serializable {
     private String cpf;
 
     @ManyToOne
-    @JoinColumn(name = "turma_id")
-    Turma turma;
+    @JoinColumn(name = "turma_id", referencedColumnName = "id")
+    private Turma turma;
 
-    public Aluno(){
+    public Aluno() {
 
     }
 
-    public Aluno(String nome, String cpf, Turma turma) {
+    public Aluno(Long idAluno, String nome, String cpf, Turma turma) {
+        this.idAluno = idAluno;
         this.nome = nome;
         this.cpf = cpf;
         this.turma = turma;
+    }
+
+    public Long getIdAluno() {
+        return idAluno;
+    }
+
+    public void setIdAluno(Long idAluno) {
+        this.idAluno = idAluno;
     }
 
     public String getNome() {
@@ -50,7 +56,11 @@ public class Aluno implements Serializable {
         this.cpf = cpf;
     }
 
-    public Long getIdAluno() {
-        return idAluno;
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
     }
 }

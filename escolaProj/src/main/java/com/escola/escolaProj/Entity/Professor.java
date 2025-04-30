@@ -20,7 +20,7 @@ public class Professor {
     private String nome;
     private String sobrenome;
 
-    @OneToMany(mappedBy = "turma")
+    @OneToMany(mappedBy = "professor")
     @JsonIgnore
     private List<Turma> turmas;
 }

@@ -24,10 +24,10 @@ public class Turma implements Serializable {
      private String nome;
 
      @ManyToOne
-     @JoinColumn(name = "id.professor", referencedColumnName = "id")
+     @JoinColumn(name = "idProfessor", referencedColumnName = "id")
      private Professor professor;
 
-     @OneToMany(mappedBy = "aluno")
+     @OneToMany(mappedBy = "turma")
      @JsonIgnore
      private List<Aluno> alunos;
 }
