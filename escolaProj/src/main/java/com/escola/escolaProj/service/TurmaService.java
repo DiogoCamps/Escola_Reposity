@@ -20,7 +20,7 @@ public class TurmaService {
     @Autowired
     public AlunoRepository alunoRepository;
 
-    public List<Turma> getAll() {
+    public List<Turma> getAllTurmas() {
         return turmaRepository.findAll();
     }
 
@@ -114,4 +114,5 @@ public class TurmaService {
             return false;
         }
     }
+
 }
