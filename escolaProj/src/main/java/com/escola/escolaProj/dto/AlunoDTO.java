@@ -15,7 +15,6 @@ public class AlunoDTO implements Serializable {
     private Turma turma;
 
     public AlunoDTO() {
-
     }
 
     public AlunoDTO(Long idAluno, String nome, String cpf, Turma turma) {

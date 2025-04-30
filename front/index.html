@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Escolar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .entity-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 5px;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button.delete {
+            background-color: #f44336;
+        }
+
+        button.delete:hover {
+            background-color: #d32f2f;
+        }
+
+        .results {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 0;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background-color: #ddd;
+            cursor: pointer;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .tab.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Sistema de Gerenciamento Escolar</h1>
+
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab('professor')">Professor</div>
+        <div class="tab" onclick="switchTab('aluno')">Aluno</div>
+        <div class="tab" onclick="switchTab('turma')">Turma</div>
+    </div>
+
+    <div id="professor" class="tab-content active">
+        <div class="entity-section">
+            <h2>Professor</h2>
+            <div class="form-group">
+                <label for="professor-nome">Nome:</label>
+                <input type="text" id="professor-nome" required>
+            </div>
+            <div class="form-group">
+                <label for="professor-sobrenome">Sobrenome:</label>
+                <input type="text" id="professor-sobrenome" required>
+            </div>
+
+            <button onclick="professorCadastrar()">Cadastrar</button>
+            <button onclick="professorBuscarPorId()">Buscar por ID</button>
+            <button onclick="professorBuscarPorNome()">Buscar por Nome</button>
+            <button onclick="professorBuscarTodos()">Buscar Todos</button>
+            <button onclick="professorAtualizar()">Atualizar</button>
+            <button class="delete" onclick="professorDeletar()">Deletar</button>
+
+            <div class="results" id="professor-results">
+                <pre>Resultados aparecerão aqui...</pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="aluno" class="tab-content">
+        <div class="entity-section">
+            <h2>Aluno</h2>
+            <div class="form-group">
+                <label for="aluno-id">ID:</label>
+                <input type="number" id="aluno-id" placeholder="Deixe em branco para cadastrar">
+            </div>
+            <div class="form-group">
+                <label for="aluno-nome">Nome:</label>
+                <input type="text" id="aluno-nome" required>
+            </div>
+            <div class="form-group">
+                <label for="aluno-cpf">CPF:</label>
+                <input type="text" id="aluno-cpf" required>
+            </div>
+
+            <button onclick="alunoCadastrar()">Cadastrar</button>
+            <button onclick="alunoBuscarPorId()">Buscar por ID</button>
+            <button onclick="alunoBuscarPorCpf()">Buscar por CPF</button>
+            <button onclick="alunoBuscarTodos()">Buscar Todos</button>
+            <button onclick="alunoAtualizar()">Atualizar</button>
+            <button class="delete" onclick="alunoDeletar()">Deletar</button>
+
+            <div class="results" id="aluno-results">
+                <pre>Resultados aparecerão aqui...</pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="turma" class="tab-content">
+        <div class="entity-section">
+            <h2>Turma</h2>
+            <div class="form-group">
+                <label for="turma-id">ID:</label>
+                <input type="number" id="turma-id" placeholder="Deixe em branco para cadastrar">
+            </div>
+            <div class="form-group">
+                <label for="turma-sigla">Sigla:</label>
+                <input type="text" id="turma-sigla" required>
+            </div>
+            <div class="form-group">
+                <label for="turma-numeroSala">Número da Sala:</label>
+                <input type="number" id="turma-numeroSala" required>
+            </div>
+            <div class="form-group">
+                <label for="turma-nome">Nome:</label>
+                <input type="text" id="turma-nome" required>
+            </div>
+
+            <button onclick="turmaCadastrar()">Cadastrar</button>
+            <button onclick="turmaBuscarPorId()">Buscar por ID</button>
+            <button onclick="turmaBuscarPorNome()">Buscar por Nome</button>
+            <button onclick="turmaBuscarTodos()">Buscar Todos</button>
+            <button onclick="turmaAtualizar()">Atualizar</button>
+            <button class="delete" onclick="turmaDeletar()">Deletar</button>
+
+            <div class="results" id="turma-results">
+                <pre>Resultados aparecerão aqui...</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:8080';
+
+        // Funções auxiliares
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            document.querySelector(`.tab[onclick="switchTab('${tabName}')"]`).classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        function displayResults(entity, data) {
+            const resultsDiv = document.getElementById(`${entity}-results`);
+            resultsDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        }
+
+        async function handleFetch(url, method = 'GET', body = null) {
+            try {
+                const options = {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                };
+
+                if (body) {
+                    options.body = JSON.stringify(body);
+                }
+
+                const response = await fetch(url, options);
+
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP: ${response.status}`);
+                }
+
+                return await response.json();
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+                return { error: error.message };
+            }
+        }
+
+        // Funções para Professor
+        async function professorCadastrar() {
+            const professor = {
+                nome: document.getElementById('professor-nome').value,
+                sobrenome: document.getElementById('professor-sobrenome').value
+            };
+
+            const result = await handleFetch(`${API_BASE_URL}/professor`, 'POST', professor);
+            displayResults('professor', result);
+        }
+
+        async function professorBuscarPorId() {
+            const id = document.getElementById('professor-id').value;
+            if (!id) {
+                alert('Por favor, informe o ID');
+                return;
+            }
+
+            const result = await handleFetch(`${API_BASE_URL}/professor/${id}`);
+            displayResults('professor', result);
+        }
+
+        async function professorBuscarPorNome() {
+            const nome = document.getElementById('professor-nome').value;
+            if (!nome) {
+                alert('Por favor, informe o nome');
+                return;
+            }
+
+            const result = await handleFetch(`${API_BASE_URL}/professor/nome?nome=${nome}`);
+            displayResults('professor', result);
+        }
+
+        async function professorBuscarTodos() {
+            const result = await handleFetch(`${API_BASE_URL}/professor`);
+            displayResults('professor', result);
+        }
+
+        async function professorAtualizar() {
+            const id = document.getElementById('professor-id').value;
+            if (!id) {
+                alert('Por favor, informe o ID para atualizar');
+                return;
+            }
+
+            const professor = {
+                nome: document.getElementById('professor-nome').value,
+                sobrenome: document.getElementById('professor-sobrenome').value
+            };
+
+            const result = await handleFetch(`${API_BASE_URL}/professor/${id}`, 'PUT', professor);
+            displayResults('professor', result);
+        }
+
+        async function professorDeletar() {
+            const id = document.getElementById('professor-id').value;
+            if (!id) {
+                alert('Por favor, informe o ID para deletar');
+                return;
+            }
+
+            const result = await handleFetch(`${API_BASE_URL}/professor/${id}`, 'DELETE');
+            displayResults('professor', result);
+        }
+
+        // Funções para Aluno
+        async function alunoCadastrar() {
+            const aluno = {
+                nome: document.getElementById('aluno-nome').value,
+                cpf: document.getElementById('aluno-cpf').value
+            };
+
+            const result = await handleFetch(`${API_BASE_URL}/aluno`, 'POST', aluno);
+            displayResults('aluno', result);
+        }
+
+        async function alunoBuscarPorId() {
+            const id = document.getElementById('aluno-id').value;
+            if (!id) {
+                alert('Por favor, informe o ID');
+                return;
+            }
+
+            const result = await handleFetch(`${API_BASE_URL}/aluno/${id}`);
+            displayResults('aluno', result);
+        }
+
+        async function alunoBuscarPorCpf() {
+            const cpf = document.getElementById('aluno-cpf').value;
+            if (!cpf) {
+                alert('Por favor, informe o CPF');
+                return;
+            }
+
+            const result = await handleFetch(`${API_BASE_URL}/aluno/cpf?cpf=${cpf}`);
+            displayResults('aluno', result);
+        }
+
+        async function alunoBuscarTodos() {
+            const result = await handleFetch(`${API_BASE_URL}/alunos`);
+            displayResults('aluno', result);
+        }
+
+        async function alunoAtualizar() {
+            const id = document.getElementById('aluno-id').value;
+            if (!id) {
+                alert('Por favor, informe o ID para atualizar');
+                return;
+            }
+
+            const aluno = {
+                nome: document.getElementById('aluno-nome').value,
+                cpf: document.getElementById('aluno-cpf').value
+            };
+
+            const result = await handleFetch(`${API_BASE_URL}/aluno/${id}`, 'PUT', aluno);
+            displayResults('aluno', result);
+        }
+
+        async function alunoDeletar() {
+            const id = document.getElementById('aluno-id').value;
+            if (!id) {
+                alert('Por favor, informe o ID para deletar');
+                return;
+            }
+
+            const result = await handleFetch(`${API_BASE_URL}/aluno/${id}`, 'DELETE');
+            displayResults('aluno', result);
+        }
+
+        // Funções para Turma
+        async function turmaCadastrar() {
+            const turma = {
+                sigla: document.getElementById('turma-sigla').value,
+                numeroSala: parseInt(document.getElementById('turma-numeroSala').value),
+                nome: document.getElementById('turma-nome').value
+            };
+
+            const result = await handleFetch(`${API_BASE_URL}/turma`, 'POST', turma);
+            displayResults('turma', result);
+        }
+
+        async function turmaBuscarPorId() {
+            const id = document.getElementById('turma-id').value;
+            if (!id) {
+                alert('Por favor, informe o ID');
+                return;
+            }
+
+            const result = await handleFetch(`${API_BASE_URL}/turma/${id}`);
+            displayResults('turma', result);
+        }
+
+        async function turmaBuscarPorNome() {
+            const nome = document.getElementById('turma-nome').value;
+            if (!nome) {
+                alert('Por favor, informe o nome');
+                return;
+            }
+
+            const result = await handleFetch(`${API_BASE_URL}/turma/nome?nome=${nome}`);
+            displayResults('turma', result);
+        }
+
+        async function turmaBuscarTodos() {
+            const result = await handleFetch(`${API_BASE_URL}/turma`);
+            displayResults('turma', result);
+        }
+
+        async function turmaAtualizar() {
+            const id = document.getElementById('turma-id').value;
+            if (!id) {
+                alert('Por favor, informe o ID para atualizar');
+                return;
+            }
+
+            const turma = {
+                sigla: document.getElementById('turma-sigla').value,
+                numeroSala: parseInt(document.getElementById('turma-numeroSala').value),
+                nome: document.getElementById('turma-nome').value
+            };
+
+            const result = await handleFetch(`${API_BASE_URL}/turmas/${id}`, 'PUT', turma);
+            displayResults('turma', result);
+        }
+
+        async function turmaDeletar() {
+            const id = document.getElementById('turma-id').value;
+            if (!id) {
+                alert('Por favor, informe o ID para deletar');
+                return;
+            }
+
+            const result = await handleFetch(`${API_BASE_URL}/turmas/${id}`, 'DELETE');
+            displayResults('turma', result);
+        }
+    </script>
+</body>
+
+</html>

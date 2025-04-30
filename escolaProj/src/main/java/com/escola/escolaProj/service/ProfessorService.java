@@ -20,7 +20,7 @@ public class ProfessorService {
     }
 
     public List<Professor> getAllProfessorByNome(String nome){
-        return professorRepository.findAllNome(nome);
+        return professorRepository.findByNome(nome);
     }
 
     public Optional<ProfessorDTO> getById(Long id){

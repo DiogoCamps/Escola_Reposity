@@ -18,7 +18,7 @@ public class AlunoController {
     @GetMapping
     public List<Aluno> getAll(@RequestParam(required = false) String cpf){
         if(cpf != null && !cpf.isEmpty()){
-            return alunoService.getAllAlunosCPF(cpf); 
+            return alunoService.getAllAlunosCPF(cpf);
         }
         return alunoService.getAllAlunos();
     }
@@ -35,8 +35,8 @@ public class AlunoController {
 
     @PostMapping
     public ResponseEntity<AlunoDTO> create(@RequestBody AlunoDTO alunoDTO){
-        AlunoDTO alunoDTOSave = alunoService.createAluno(alunoDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(alunoDTOSave);
+        AlunoDTO aluno = alunoService.createAluno(alunoDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(aluno);
     }
 
     @PutMapping("/{id}")
