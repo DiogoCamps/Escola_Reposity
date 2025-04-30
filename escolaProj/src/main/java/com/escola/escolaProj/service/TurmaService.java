@@ -3,6 +3,7 @@ package com.escola.escolaProj.service;
 import com.escola.escolaProj.Entity.Aluno;
 import com.escola.escolaProj.Entity.Turma;
 import com.escola.escolaProj.dto.TurmaDTO;
+import com.escola.escolaProj.repository.AlunoRepository;
 import com.escola.escolaProj.repository.TurmaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class TurmaService {
 
     @Autowired
     public TurmaRepository turmaRepository;
+
+    @Autowired
+    public AlunoRepository alunoRepository;
 
     public List<Turma> getAll() {
         return turmaRepository.findAll();
