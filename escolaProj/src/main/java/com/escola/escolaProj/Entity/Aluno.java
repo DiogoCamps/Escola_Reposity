@@ -21,7 +21,7 @@ public class Aluno implements Serializable {
     private String cpf;
 
     @ManyToOne
-    @JoinColumn(name = "turma_id")
+    @JoinColumn(name = "id_turma", referencedColumnName = "id")
     Turma turma;
 
     public Aluno(){

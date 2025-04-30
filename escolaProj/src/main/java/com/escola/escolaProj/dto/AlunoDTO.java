@@ -2,6 +2,7 @@ package com.escola.escolaProj.dto;
 
 import com.escola.escolaProj.Entity.Aluno;
 import com.escola.escolaProj.Entity.Turma;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,12 +13,12 @@ public class AlunoDTO implements Serializable{
     private Long idAluno;
     private String nome;
     private String cpf;
-    private Long turma_id;
-
-    Turma turma;
+    @JsonIgnore
+    private Turma turma;
 
     public Aluno toAluno() {
         return new Aluno(
+                this.idAluno,
                 this.nome,
                 this.cpf,
                 this.turma
