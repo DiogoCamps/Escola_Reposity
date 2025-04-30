@@ -32,7 +32,7 @@ public class ProfessorDTO implements Serializable {
                 professor.getId(),
                 professor.getNome(),
                 professor.getSobrenome(),
-                professor.getTurmas()
+                professor.getTurmas()   ,
         );
 
     }
