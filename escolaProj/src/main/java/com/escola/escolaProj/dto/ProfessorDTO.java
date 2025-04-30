@@ -27,7 +27,7 @@ public class ProfessorDTO implements Serializable {
         );
     }
 
-    public ProfessorDTO fromProfessor(Professor professor){
+    public static ProfessorDTO fromProfessor(Professor professor){
         return new ProfessorDTO(
                 professor.getId(),
                 professor.getNome(),

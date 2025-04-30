@@ -1,5 +1,6 @@
 package com.escola.escolaProj.service;
 
+import com.escola.escolaProj.Entity.Aluno;
 import com.escola.escolaProj.Entity.Turma;
 import com.escola.escolaProj.dto.TurmaDTO;
 import com.escola.escolaProj.repository.TurmaRepository;
@@ -18,6 +19,10 @@ public class TurmaService {
     public List<Turma> getAll() {
         return turmaRepository.findAll();
     }
+
+    public List<Turma> getAllTurmasByNome(String nome) {
+        return turmaRepository.getAllByNome(nome);
+    }
     //busca pelo id
     public Optional<TurmaDTO> getById(Long id){
         Optional<Turma> turmaOptional = turmaRepository.findById(id);
@@ -27,11 +32,6 @@ public class TurmaService {
         }else {
             return Optional.empty();
         }
-    }
-
-    //busca pelo nome
-    public List<Turma> getAllByNome(String nome){
-        return turmaRepository.findAllByNome(nome);
     }
 
     //cria uma turma
@@ -57,6 +57,49 @@ public class TurmaService {
         }else {
             return Optional.empty();
         }
+    }
+    //add aluno
+    public boolean addAlunoTurma(Long id, Long idAluno){
+        //busca a turma e verifica se ela existe
+        Optional<Turma> optionalTurma = turmaRepository.findById(id);
+        if (!optionalTurma.isPresent()){
+            return false;
+        }
+
+        //busca o aluno e verifica se ele existe
+        Optional<Aluno> optionalAluno = alunoRepository.findById(idAluno);
+        if (!optionalAluno.isPresent()){
+            return false;
+        }
+        //instancia as entidades Turma e Aluno
+        Turma turma = optionalTurma.get();
+        Aluno aluno = optionalAluno.get();
+
+        //atualiza a entidade aluno com a nova turma
+        aluno.setTurma(turma);
+        //salva no banco de dados
+        alunoRepository.save(aluno);
+        return true;
+    }
+
+    //remover aluno a turma
+    public boolean removeAlunoTurma(Long id, Long idAluno){
+        //busca o aluno e verifica se ele existe
+        Optional<Aluno> optionalAluno = alunoRepository.findById(idAluno);
+        if (!optionalAluno.isPresent()){
+            return false;
+        }
+
+        Aluno aluno = optionalAluno.get();
+
+        //verifica se o aluno tem uma turma
+        //verifica se a turma que esta no aluno é realmente a turma que deseja remover
+        if (aluno.getTurma() != null && aluno.getTurma().getId().equals(id)){
+            aluno.setTurma(null);
+            alunoRepository.save(aluno);
+            return true;
+        }
+        return false;
     }
 
     public  boolean delete(Long id){
