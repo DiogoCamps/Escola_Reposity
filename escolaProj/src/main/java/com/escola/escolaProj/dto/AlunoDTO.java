@@ -14,6 +14,10 @@ public class AlunoDTO implements Serializable {
     @JsonIgnore
     private Turma turma;
 
+    public AlunoDTO() {
+        
+    }
+
     public AlunoDTO(Long idAluno, String nome, String cpf, Turma turma) {
         this.idAluno = idAluno;
         this.nome = nome;
